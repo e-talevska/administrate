@@ -6,7 +6,7 @@ module Administrate
 
     def find_routes_file
       routes_file = Rails.root.join("config/routes.rb")
-      if File.exist?(routes_file)
+      if ::File.exist?(routes_file)
         routes_file = find_file("routes.rb")
         raise "Unable to locate your routes.rb file" if routes_file.nil?
       end
@@ -21,8 +21,8 @@ module Administrate
 
     def find_file(file_name)
       file = nil
-      Find.find(Rails.root) do |path|
-        Find.prune if path.include? ".git"
+      ::Find.find(Rails.root) do |path|
+        ::Find.prune if path.include? ".git"
 
         next unless path.include? file_name
 
